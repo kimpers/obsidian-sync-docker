@@ -1,0 +1,12 @@
+services:
+  obsidian-headless:
+    build: .
+    container_name: obsidian-headless
+    init: true
+    restart: unless-stopped
+    volumes:
+      - ./vault:/obsidian-vault
+      - obsidian-headless-home:/home/node
+
+volumes:
+  obsidian-headless-home:
