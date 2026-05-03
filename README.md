@@ -42,7 +42,13 @@ The service runs:
 ob sync --path /obsidian-vault --continuous
 ```
 
-Vault data is stored in `./vault`. Obsidian Headless login and local configuration data are persisted in the `obsidian-headless-home` Docker volume.
+Vault data is stored in `./vault`. The container startup creates `./vault/.obsidian` if needed, fixes Linux bind-mount ownership for the `node` user, and removes stale `.obsidian/.sync-lock` files before starting sync. Obsidian Headless login and local configuration data are persisted in the `obsidian-headless-home` Docker volume.
+
+If you change the Dockerfile or entrypoint, rebuild before running:
+
+```bash
+docker compose build --no-cache
+```
 
 ## Useful Commands
 
